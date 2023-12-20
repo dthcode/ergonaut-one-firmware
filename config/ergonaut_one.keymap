@@ -13,7 +13,7 @@
 
 &mt {
     quick-tap-ms = <0>;
-    tapping-term-ms = <135>;
+    tapping-term-ms = <250>;
     flavor = "tap-preferred";
 };
 
