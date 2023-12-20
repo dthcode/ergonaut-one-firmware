@@ -27,15 +27,28 @@
         };
     };
 
+    behaviors {
+        modtap: modtap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MODTAP";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <100>;
+            quick-tap-ms = <200>;
+            flavor = "tap-unless-interrupted";
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
             bindings = <
-&lt 3 ESC           &mt LS(Q) Q  &mt LS(W) W  &mt LS(E) E  &mt LS(R) R  &mt LS(T) T             &mt LS(Y) Y  &mt LS(U) U  &mt LS(I) I          &mt LS(O) O      &mt LS(P) P                  &mt LS(LBKT) LEFT_BRACKET
-&mt LEFT_SHIFT TAB  &mt LS(A) A  &mt LS(S) S  &mt LS(D) D  &mt LS(F) F  &mt LS(G) G             &mt LS(H) H  &mt LS(J) J  &mt LS(K) K          &mt LS(L) L      &mt LS(SEMICOLON) SEMICOLON  &mt LS(SINGLE_QUOTE) SINGLE_QUOTE
-&kp LCTRL           &mt LS(Z) Z  &mt LS(X) X  &mt LS(C) C  &mt LS(V) V  &mt LS(B) B             &mt LS(N) N  &mt LS(M) M  &mt LS(COMMA) COMMA  &mt LS(DOT) DOT  &mt LS(SLASH) SLASH          &kp F17
-                                              &kp LCMD     &mo 1        &mt LEFT_ALT BACKSPACE  &lt 3 SPACE  &mo 2        &mt RALT ENTER
+&lt 3 ESC               &mt LS(Q) Q  &mt LS(W) W  &mt LS(E) E  &mt LS(R) R  &mt LS(T) T                 &mt LS(Y) Y  &mt LS(U) U  &mt LS(I) I             &mt LS(O) O      &mt LS(P) P                  &mt LS(LBKT) LEFT_BRACKET
+&modtap LEFT_SHIFT TAB  &mt LS(A) A  &mt LS(S) S  &mt LS(D) D  &mt LS(F) F  &mt LS(G) G                 &mt LS(H) H  &mt LS(J) J  &mt LS(K) K             &mt LS(L) L      &mt LS(SEMICOLON) SEMICOLON  &mt LS(SINGLE_QUOTE) SINGLE_QUOTE
+&kp LCTRL               &mt LS(Z) Z  &mt LS(X) X  &mt LS(C) C  &mt LS(V) V  &mt LS(B) B                 &mt LS(N) N  &mt LS(M) M  &mt LS(COMMA) COMMA     &mt LS(DOT) DOT  &mt LS(SLASH) SLASH          &kp F17
+                                                  &kp LCMD     &mo 1        &modtap LEFT_ALT BACKSPACE  &lt 3 SPACE  &mo 2        &modtap LEFT_ALT ENTER
             >;
         };
 
@@ -61,7 +74,7 @@
             bindings = <
 &bootloader  &none         &none         &none         &none         &none         &none         &none         &none         &none         &none         &bootloader
 &bt BT_CLR   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_SEL 4  &bt BT_SEL 3  &bt BT_SEL 2  &bt BT_SEL 1  &bt BT_SEL 0  &bt BT_CLR
-&sys_reset   &bootloader   &none         &none         &none         &none         &none         &none         &none         &none         &none         &sys_reset
+&sys_reset   &bootloader   &none         &none         &none         &kp N5        &kp N6        &none         &none         &none         &none         &sys_reset
                                          &trans        &none         &trans        &none         &trans        &trans
             >;
         };
